@@ -1,0 +1,46 @@
+﻿<?xml version="1.0" encoding="utf-8" ?>
+<LanguageData>
+	<MaiyaLabeler_ModName>Maiya Labeler</MaiyaLabeler_ModName>
+	<MaiyaLabeler_NamePrefix>Название</MaiyaLabeler_NamePrefix>
+
+	<MaiyaLabeler_ToolLabel>Настроить метку</MaiyaLabeler_ToolLabel>
+	<MaiyaLabeler_ToolDesc>Нажмите на комнату или зону, чтобы настроить метку.</MaiyaLabeler_ToolDesc>
+	<MaiyaLabeler_ToggleIconDesc>Maiya Labeler\n\nНажмите для переключения видимости.\nДля настройки используйте инструмент на вкладке [Зоны].</MaiyaLabeler_ToggleIconDesc>
+	<MaiyaLabeler_Msg_IsDoor>Это дверь, нельзя установить метку.</MaiyaLabeler_Msg_IsDoor>
+	<MaiyaLabeler_Msg_NoTarget>Здесь нет комнаты или зоны.</MaiyaLabeler_Msg_NoTarget>
+
+	<MaiyaLabeler_ConfigTitle>Настройка метки: {0}</MaiyaLabeler_ConfigTitle>
+	<MaiyaLabeler_ConfigCustomName>Свое название:</MaiyaLabeler_ConfigCustomName>
+	<MaiyaLabeler_ConfigColor>Выбрать цвет:</MaiyaLabeler_ConfigColor>
+	<MaiyaLabeler_ConfigOpacity>Непрозрачность: {0}</MaiyaLabeler_ConfigOpacity>
+	<MaiyaLabeler_ConfigFontSize_Global>Размер: Как в настройках</MaiyaLabeler_ConfigFontSize_Global>
+	<MaiyaLabeler_ConfigFontSize_Custom>Размер: {0}</MaiyaLabeler_ConfigFontSize_Custom>
+	<MaiyaLabeler_ConfigOffsetX>Смещение X: {0}</MaiyaLabeler_ConfigOffsetX>
+	<MaiyaLabeler_ConfigOffsetY>Смещение Y: {0}</MaiyaLabeler_ConfigOffsetY>
+	<MaiyaLabeler_ConfigEnable>Включить отображение</MaiyaLabeler_ConfigEnable>
+	<MaiyaLabeler_ConfigShowIcon>Показывать иконку</MaiyaLabeler_ConfigShowIcon>
+	<MaiyaLabeler_ConfigReset>Сброс</MaiyaLabeler_ConfigReset>
+	<MaiyaLabeler_ConfigClose>Закрыть</MaiyaLabeler_ConfigClose>
+
+	<MaiyaLabeler_Section_Display>--- Управление отображением ---</MaiyaLabeler_Section_Display>
+	<MaiyaLabeler_ShowRoom>Показывать названия комнат</MaiyaLabeler_ShowRoom>
+	<MaiyaLabeler_ShowZone>Показывать названия зон</MaiyaLabeler_ShowZone>
+	<MaiyaLabeler_ShowGrow>  - Показывать зоны посадок</MaiyaLabeler_ShowGrow>
+	<MaiyaLabeler_ShowStock>  - Показывать склады</MaiyaLabeler_ShowStock>
+
+	<MaiyaLabeler_Section_Style>--- Стиль и иконки по умолчанию ---</MaiyaLabeler_Section_Style>
+	<MaiyaLabeler_TypeRoom>Комната</MaiyaLabeler_TypeRoom>
+	<MaiyaLabeler_TypeGrow>Зона посадок</MaiyaLabeler_TypeGrow>
+	<MaiyaLabeler_TypeStock>Склад</MaiyaLabeler_TypeStock>
+	<MaiyaLabeler_ShowTypeIcon>Иконка: {0}</MaiyaLabeler_ShowTypeIcon>
+	<MaiyaLabeler_DefaultColor>Цвет:</MaiyaLabeler_DefaultColor>
+	<MaiyaLabeler_Tip_EditColor>Нажмите для изменения цвета по умолчанию</MaiyaLabeler_Tip_EditColor>
+	<MaiyaLabeler_ResetColor>Сбросить цвет</MaiyaLabeler_ResetColor>
+	<MaiyaLabeler_GlobalFontSize>Множитель размера шрифта: {0}</MaiyaLabeler_GlobalFontSize>
+
+	<MaiyaLabeler_Settings_ChooseColorTitle>Выберите цвет по умолчанию:</MaiyaLabeler_Settings_ChooseColorTitle>
+	<MaiyaLabeler_Settings_Confirm>Подтвердить</MaiyaLabeler_Settings_Confirm>
+
+	<MaiyaLabeler_ConfigCustomDesc>Свое описание (контекст ИИ):</MaiyaLabeler_ConfigCustomDesc>
+	<MaiyaLabeler_DescPrefix>Прим.</MaiyaLabeler_DescPrefix>
+</LanguageData>

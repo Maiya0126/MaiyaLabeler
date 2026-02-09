@@ -1,0 +1,46 @@
+﻿<?xml version="1.0" encoding="utf-8" ?>
+<LanguageData>
+	<MaiyaLabeler_ModName>Maiya Labeler 麦丫标签机</MaiyaLabeler_ModName>
+	<MaiyaLabeler_NamePrefix>名称</MaiyaLabeler_NamePrefix>
+
+	<MaiyaLabeler_ToolLabel>配置标签</MaiyaLabeler_ToolLabel>
+	<MaiyaLabeler_ToolDesc>点击房间或区域来修改它的标签设置。</MaiyaLabeler_ToolDesc>
+	<MaiyaLabeler_ToggleIconDesc>麦丫标签机\n\n点击开关显示。\n如需配置，请使用【区域】菜单里的工具。</MaiyaLabeler_ToggleIconDesc>
+	<MaiyaLabeler_Msg_IsDoor>这是一个门，无法设置标签</MaiyaLabeler_Msg_IsDoor>
+	<MaiyaLabeler_Msg_NoTarget>此处没有房间或区域</MaiyaLabeler_Msg_NoTarget>
+
+	<MaiyaLabeler_ConfigTitle>配置标签: {0}</MaiyaLabeler_ConfigTitle>
+	<MaiyaLabeler_ConfigCustomName>自定义名称:</MaiyaLabeler_ConfigCustomName>
+	<MaiyaLabeler_ConfigColor>颜色选择:</MaiyaLabeler_ConfigColor>
+	<MaiyaLabeler_ConfigOpacity>透明度: {0}</MaiyaLabeler_ConfigOpacity>
+	<MaiyaLabeler_ConfigFontSize_Global>字号: 跟随全局设置</MaiyaLabeler_ConfigFontSize_Global>
+	<MaiyaLabeler_ConfigFontSize_Custom>字号: {0}</MaiyaLabeler_ConfigFontSize_Custom>
+	<MaiyaLabeler_ConfigOffsetX>位置偏移 X: {0}</MaiyaLabeler_ConfigOffsetX>
+	<MaiyaLabeler_ConfigOffsetY>位置偏移 Y: {0}</MaiyaLabeler_ConfigOffsetY>
+	<MaiyaLabeler_ConfigEnable>启用显示</MaiyaLabeler_ConfigEnable>
+	<MaiyaLabeler_ConfigShowIcon>显示图标</MaiyaLabeler_ConfigShowIcon>
+	<MaiyaLabeler_ConfigReset>重置默认</MaiyaLabeler_ConfigReset>
+	<MaiyaLabeler_ConfigClose>关闭</MaiyaLabeler_ConfigClose>
+
+	<MaiyaLabeler_Section_Display>--- 显示控制 ---</MaiyaLabeler_Section_Display>
+	<MaiyaLabeler_ShowRoom>显示房间名</MaiyaLabeler_ShowRoom>
+	<MaiyaLabeler_ShowZone>显示区域名</MaiyaLabeler_ShowZone>
+	<MaiyaLabeler_ShowGrow>  - 显示种植区</MaiyaLabeler_ShowGrow>
+	<MaiyaLabeler_ShowStock>  - 显示储存区</MaiyaLabeler_ShowStock>
+
+	<MaiyaLabeler_Section_Style>--- 默认样式与图标 ---</MaiyaLabeler_Section_Style>
+	<MaiyaLabeler_TypeRoom>房间</MaiyaLabeler_TypeRoom>
+	<MaiyaLabeler_TypeGrow>种植区</MaiyaLabeler_TypeGrow>
+	<MaiyaLabeler_TypeStock>储存区</MaiyaLabeler_TypeStock>
+	<MaiyaLabeler_ShowTypeIcon>显示{0}图标</MaiyaLabeler_ShowTypeIcon>
+	<MaiyaLabeler_DefaultColor>默认颜色:</MaiyaLabeler_DefaultColor>
+	<MaiyaLabeler_Tip_EditColor>点击修改默认颜色</MaiyaLabeler_Tip_EditColor>
+	<MaiyaLabeler_ResetColor>重置颜色</MaiyaLabeler_ResetColor>
+	<MaiyaLabeler_GlobalFontSize>全局字体大小倍率: {0}</MaiyaLabeler_GlobalFontSize>
+
+	<MaiyaLabeler_Settings_ChooseColorTitle>选择默认颜色:</MaiyaLabeler_Settings_ChooseColorTitle>
+	<MaiyaLabeler_Settings_Confirm>确定</MaiyaLabeler_Settings_Confirm>
+
+	<MaiyaLabeler_ConfigCustomDesc>自定义描述 (AI 上下文):</MaiyaLabeler_ConfigCustomDesc>
+	<MaiyaLabeler_DescPrefix>备注</MaiyaLabeler_DescPrefix>
+</LanguageData>

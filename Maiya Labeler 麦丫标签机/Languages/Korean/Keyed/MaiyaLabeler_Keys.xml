@@ -1,0 +1,46 @@
+﻿<?xml version="1.0" encoding="utf-8" ?>
+<LanguageData>
+	<MaiyaLabeler_ModName>Maiya Labeler</MaiyaLabeler_ModName>
+	<MaiyaLabeler_NamePrefix>이름</MaiyaLabeler_NamePrefix>
+
+	<MaiyaLabeler_ToolLabel>라벨 설정</MaiyaLabeler_ToolLabel>
+	<MaiyaLabeler_ToolDesc>방이나 구역을 클릭하여 라벨을 설정합니다.</MaiyaLabeler_ToolDesc>
+	<MaiyaLabeler_ToggleIconDesc>Maiya Labeler\n\n클릭하여 표시/숨기기를 전환합니다.\n설정하려면 [구역] 탭의 도구를 사용하세요.</MaiyaLabeler_ToggleIconDesc>
+	<MaiyaLabeler_Msg_IsDoor>문에는 라벨을 설정할 수 없습니다.</MaiyaLabeler_Msg_IsDoor>
+	<MaiyaLabeler_Msg_NoTarget>여기에 방이나 구역이 없습니다.</MaiyaLabeler_Msg_NoTarget>
+
+	<MaiyaLabeler_ConfigTitle>라벨 설정: {0}</MaiyaLabeler_ConfigTitle>
+	<MaiyaLabeler_ConfigCustomName>사용자 지정 이름:</MaiyaLabeler_ConfigCustomName>
+	<MaiyaLabeler_ConfigColor>색상 선택:</MaiyaLabeler_ConfigColor>
+	<MaiyaLabeler_ConfigOpacity>투명도: {0}</MaiyaLabeler_ConfigOpacity>
+	<MaiyaLabeler_ConfigFontSize_Global>크기: 전역 설정 따름</MaiyaLabeler_ConfigFontSize_Global>
+	<MaiyaLabeler_ConfigFontSize_Custom>크기: {0}</MaiyaLabeler_ConfigFontSize_Custom>
+	<MaiyaLabeler_ConfigOffsetX>위치 오프셋 X: {0}</MaiyaLabeler_ConfigOffsetX>
+	<MaiyaLabeler_ConfigOffsetY>위치 오프셋 Y: {0}</MaiyaLabeler_ConfigOffsetY>
+	<MaiyaLabeler_ConfigEnable>표시 활성화</MaiyaLabeler_ConfigEnable>
+	<MaiyaLabeler_ConfigShowIcon>아이콘 표시</MaiyaLabeler_ConfigShowIcon>
+	<MaiyaLabeler_ConfigReset>기본값으로 초기화</MaiyaLabeler_ConfigReset>
+	<MaiyaLabeler_ConfigClose>닫기</MaiyaLabeler_ConfigClose>
+
+	<MaiyaLabeler_Section_Display>--- 표시 제어 ---</MaiyaLabeler_Section_Display>
+	<MaiyaLabeler_ShowRoom>방 이름 표시</MaiyaLabeler_ShowRoom>
+	<MaiyaLabeler_ShowZone>구역 이름 표시</MaiyaLabeler_ShowZone>
+	<MaiyaLabeler_ShowGrow>  - 재배 구역 표시</MaiyaLabeler_ShowGrow>
+	<MaiyaLabeler_ShowStock>  - 저장 구역 표시</MaiyaLabeler_ShowStock>
+
+	<MaiyaLabeler_Section_Style>--- 기본 스타일 및 아이콘 ---</MaiyaLabeler_Section_Style>
+	<MaiyaLabeler_TypeRoom>방</MaiyaLabeler_TypeRoom>
+	<MaiyaLabeler_TypeGrow>재배 구역</MaiyaLabeler_TypeGrow>
+	<MaiyaLabeler_TypeStock>저장 구역</MaiyaLabeler_TypeStock>
+	<MaiyaLabeler_ShowTypeIcon>{0} 아이콘 표시</MaiyaLabeler_ShowTypeIcon>
+	<MaiyaLabeler_DefaultColor>색상:</MaiyaLabeler_DefaultColor>
+	<MaiyaLabeler_Tip_EditColor>클릭하여 기본 색상 변경</MaiyaLabeler_Tip_EditColor>
+	<MaiyaLabeler_ResetColor>색상 초기화</MaiyaLabeler_ResetColor>
+	<MaiyaLabeler_GlobalFontSize>전역 폰트 크기 비율: {0}</MaiyaLabeler_GlobalFontSize>
+
+	<MaiyaLabeler_Settings_ChooseColorTitle>기본 색상 선택:</MaiyaLabeler_Settings_ChooseColorTitle>
+	<MaiyaLabeler_Settings_Confirm>확인</MaiyaLabeler_Settings_Confirm>
+
+	<MaiyaLabeler_ConfigCustomDesc>사용자 지정 설명 (AI 컨텍스트):</MaiyaLabeler_ConfigCustomDesc>
+	<MaiyaLabeler_DescPrefix>비고</MaiyaLabeler_DescPrefix>
+</LanguageData>

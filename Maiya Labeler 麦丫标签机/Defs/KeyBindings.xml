@@ -1,0 +1,22 @@
+﻿<?xml version="1.0" encoding="utf-8" ?>
+<Defs>
+	<KeyBindingCategoryDef>
+		<defName>MaiyaLabeler_Category</defName>
+		<label>Maiya Labeler (麦丫标签机)</label>
+		<description>标签显示的快捷键控制</description>
+	</KeyBindingCategoryDef>
+
+	<KeyBindingDef>
+		<defName>MaiyaLabeler_ToggleVisibility</defName>
+		<label>开关显示</label>
+		<category>MaiyaLabeler_Category</category>
+		<defaultKeyCodeA>Minus</defaultKeyCodeA>
+	</KeyBindingDef>
+
+	<KeyBindingDef>
+		<defName>MaiyaLabeler_OpenConfig</defName>
+		<label>配置当前房间</label>
+		<category>MaiyaLabeler_Category</category>
+		<defaultKeyCodeA>Equals</defaultKeyCodeA>
+	</KeyBindingDef>
+</Defs>

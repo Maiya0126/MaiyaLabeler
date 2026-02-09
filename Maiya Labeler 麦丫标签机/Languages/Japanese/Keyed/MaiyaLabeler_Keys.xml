@@ -1,0 +1,46 @@
+﻿<?xml version="1.0" encoding="utf-8" ?>
+<LanguageData>
+	<MaiyaLabeler_ModName>Maiya Labeler</MaiyaLabeler_ModName>
+	<MaiyaLabeler_NamePrefix>名前</MaiyaLabeler_NamePrefix>
+
+	<MaiyaLabeler_ToolLabel>ラベル設定</MaiyaLabeler_ToolLabel>
+	<MaiyaLabeler_ToolDesc>部屋またはゾーンをクリックしてラベルを設定します。</MaiyaLabeler_ToolDesc>
+	<MaiyaLabeler_ToggleIconDesc>Maiya Labeler\n\nクリックして表示/非表示を切り替えます。\n設定を変更するには「アーキテクト」->「ゾーン」タブのツールを使用してください。</MaiyaLabeler_ToggleIconDesc>
+	<MaiyaLabeler_Msg_IsDoor>ドアにはラベルを設定できません。</MaiyaLabeler_Msg_IsDoor>
+	<MaiyaLabeler_Msg_NoTarget>ここに部屋やゾーンはありません。</MaiyaLabeler_Msg_NoTarget>
+
+	<MaiyaLabeler_ConfigTitle>ラベル設定: {0}</MaiyaLabeler_ConfigTitle>
+	<MaiyaLabeler_ConfigCustomName>カスタム名:</MaiyaLabeler_ConfigCustomName>
+	<MaiyaLabeler_ConfigColor>色を選択:</MaiyaLabeler_ConfigColor>
+	<MaiyaLabeler_ConfigOpacity>不透明度: {0}</MaiyaLabeler_ConfigOpacity>
+	<MaiyaLabeler_ConfigFontSize_Global>サイズ: 全体設定に従う</MaiyaLabeler_ConfigFontSize_Global>
+	<MaiyaLabeler_ConfigFontSize_Custom>サイズ: {0}</MaiyaLabeler_ConfigFontSize_Custom>
+	<MaiyaLabeler_ConfigOffsetX>位置オフセット X: {0}</MaiyaLabeler_ConfigOffsetX>
+	<MaiyaLabeler_ConfigOffsetY>位置オフセット Y: {0}</MaiyaLabeler_ConfigOffsetY>
+	<MaiyaLabeler_ConfigEnable>表示を有効化</MaiyaLabeler_ConfigEnable>
+	<MaiyaLabeler_ConfigShowIcon>アイコンを表示</MaiyaLabeler_ConfigShowIcon>
+	<MaiyaLabeler_ConfigReset>デフォルトに戻す</MaiyaLabeler_ConfigReset>
+	<MaiyaLabeler_ConfigClose>閉じる</MaiyaLabeler_ConfigClose>
+
+	<MaiyaLabeler_Section_Display>--- 表示設定 ---</MaiyaLabeler_Section_Display>
+	<MaiyaLabeler_ShowRoom>部屋名を表示</MaiyaLabeler_ShowRoom>
+	<MaiyaLabeler_ShowZone>ゾーン名を表示</MaiyaLabeler_ShowZone>
+	<MaiyaLabeler_ShowGrow>  - 農業ゾーンを表示</MaiyaLabeler_ShowGrow>
+	<MaiyaLabeler_ShowStock>  - 備蓄ゾーンを表示</MaiyaLabeler_ShowStock>
+
+	<MaiyaLabeler_Section_Style>--- デフォルトのスタイルとアイコン ---</MaiyaLabeler_Section_Style>
+	<MaiyaLabeler_TypeRoom>部屋</MaiyaLabeler_TypeRoom>
+	<MaiyaLabeler_TypeGrow>農業ゾーン</MaiyaLabeler_TypeGrow>
+	<MaiyaLabeler_TypeStock>備蓄ゾーン</MaiyaLabeler_TypeStock>
+	<MaiyaLabeler_ShowTypeIcon>{0}アイコンを表示</MaiyaLabeler_ShowTypeIcon>
+	<MaiyaLabeler_DefaultColor>色:</MaiyaLabeler_DefaultColor>
+	<MaiyaLabeler_Tip_EditColor>クリックしてデフォルト色を変更</MaiyaLabeler_Tip_EditColor>
+	<MaiyaLabeler_ResetColor>色をリセット</MaiyaLabeler_ResetColor>
+	<MaiyaLabeler_GlobalFontSize>全体フォントサイズ倍率: {0}</MaiyaLabeler_GlobalFontSize>
+
+	<MaiyaLabeler_Settings_ChooseColorTitle>デフォルト色を選択:</MaiyaLabeler_Settings_ChooseColorTitle>
+	<MaiyaLabeler_Settings_Confirm>決定</MaiyaLabeler_Settings_Confirm>
+
+	<MaiyaLabeler_ConfigCustomDesc>カスタム説明 (AI コンテキスト):</MaiyaLabeler_ConfigCustomDesc>
+	<MaiyaLabeler_DescPrefix>備考</MaiyaLabeler_DescPrefix>
+</LanguageData>

@@ -1,0 +1,46 @@
+﻿<?xml version="1.0" encoding="utf-8" ?>
+<LanguageData>
+	<MaiyaLabeler_ModName>Maiya Labeler</MaiyaLabeler_ModName>
+	<MaiyaLabeler_NamePrefix>Name</MaiyaLabeler_NamePrefix>
+
+	<MaiyaLabeler_ToolLabel>Configure Label</MaiyaLabeler_ToolLabel>
+	<MaiyaLabeler_ToolDesc>Click on a room or zone to configure its label.</MaiyaLabeler_ToolDesc>
+	<MaiyaLabeler_ToggleIconDesc>Maiya Labeler\n\nClick to toggle visibility.\nTo configure, use the tool in the [Zone] tab.</MaiyaLabeler_ToggleIconDesc>
+	<MaiyaLabeler_Msg_IsDoor>This is a door, cannot set label.</MaiyaLabeler_Msg_IsDoor>
+	<MaiyaLabeler_Msg_NoTarget>No room or zone here.</MaiyaLabeler_Msg_NoTarget>
+
+	<MaiyaLabeler_ConfigTitle>Config Label: {0}</MaiyaLabeler_ConfigTitle>
+	<MaiyaLabeler_ConfigCustomName>Custom Name:</MaiyaLabeler_ConfigCustomName>
+	<MaiyaLabeler_ConfigColor>Select Color:</MaiyaLabeler_ConfigColor>
+	<MaiyaLabeler_ConfigOpacity>Opacity: {0}</MaiyaLabeler_ConfigOpacity>
+	<MaiyaLabeler_ConfigFontSize_Global>Size: Global Default</MaiyaLabeler_ConfigFontSize_Global>
+	<MaiyaLabeler_ConfigFontSize_Custom>Size: {0}</MaiyaLabeler_ConfigFontSize_Custom>
+	<MaiyaLabeler_ConfigOffsetX>Offset X: {0}</MaiyaLabeler_ConfigOffsetX>
+	<MaiyaLabeler_ConfigOffsetY>Offset Y: {0}</MaiyaLabeler_ConfigOffsetY>
+	<MaiyaLabeler_ConfigEnable>Enable Display</MaiyaLabeler_ConfigEnable>
+	<MaiyaLabeler_ConfigShowIcon>Show Icon</MaiyaLabeler_ConfigShowIcon>
+	<MaiyaLabeler_ConfigReset>Reset to Default</MaiyaLabeler_ConfigReset>
+	<MaiyaLabeler_ConfigClose>Close</MaiyaLabeler_ConfigClose>
+
+	<MaiyaLabeler_Section_Display>--- Display Control ---</MaiyaLabeler_Section_Display>
+	<MaiyaLabeler_ShowRoom>Show Room Names</MaiyaLabeler_ShowRoom>
+	<MaiyaLabeler_ShowZone>Show Zone Names</MaiyaLabeler_ShowZone>
+	<MaiyaLabeler_ShowGrow>  - Show Growing Zones</MaiyaLabeler_ShowGrow>
+	<MaiyaLabeler_ShowStock>  - Show Stockpiles</MaiyaLabeler_ShowStock>
+
+	<MaiyaLabeler_Section_Style>--- Default Style and Icons ---</MaiyaLabeler_Section_Style>
+	<MaiyaLabeler_TypeRoom>Room</MaiyaLabeler_TypeRoom>
+	<MaiyaLabeler_TypeGrow>Growing Zone</MaiyaLabeler_TypeGrow>
+	<MaiyaLabeler_TypeStock>Stockpile</MaiyaLabeler_TypeStock>
+	<MaiyaLabeler_ShowTypeIcon>Show {0} Icon</MaiyaLabeler_ShowTypeIcon>
+	<MaiyaLabeler_DefaultColor>Color:</MaiyaLabeler_DefaultColor>
+	<MaiyaLabeler_Tip_EditColor>Click to change default color</MaiyaLabeler_Tip_EditColor>
+	<MaiyaLabeler_ResetColor>Reset Color</MaiyaLabeler_ResetColor>
+	<MaiyaLabeler_GlobalFontSize>Global Font Size Scale: {0}</MaiyaLabeler_GlobalFontSize>
+
+	<MaiyaLabeler_Settings_ChooseColorTitle>Choose Default Color:</MaiyaLabeler_Settings_ChooseColorTitle>
+	<MaiyaLabeler_Settings_Confirm>Confirm</MaiyaLabeler_Settings_Confirm>
+
+	<MaiyaLabeler_ConfigCustomDesc>Custom Description (AI Context):</MaiyaLabeler_ConfigCustomDesc>
+	<MaiyaLabeler_DescPrefix>Note</MaiyaLabeler_DescPrefix>
+</LanguageData>
