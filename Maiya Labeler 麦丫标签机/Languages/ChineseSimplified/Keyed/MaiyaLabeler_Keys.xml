@@ -43,4 +43,10 @@
 
 	<MaiyaLabeler_ConfigCustomDesc>自定义描述 (AI 上下文):</MaiyaLabeler_ConfigCustomDesc>
 	<MaiyaLabeler_DescPrefix>备注</MaiyaLabeler_DescPrefix>
+
+	<MaiyaLabeler_ShowMainTab>显示底部菜单按钮</MaiyaLabeler_ShowMainTab>
+
+	<MaiyaLabeler_Status_Toggle>麦丫标签机: {0}</MaiyaLabeler_Status_Toggle>
+	<MaiyaLabeler_Status_On>已开启</MaiyaLabeler_Status_On>
+	<MaiyaLabeler_Status_Off>已关闭</MaiyaLabeler_Status_Off>
 </LanguageData>

@@ -43,4 +43,10 @@
 
 	<MaiyaLabeler_ConfigCustomDesc>Свое описание (контекст ИИ):</MaiyaLabeler_ConfigCustomDesc>
 	<MaiyaLabeler_DescPrefix>Прим.</MaiyaLabeler_DescPrefix>
+
+	<MaiyaLabeler_ShowMainTab>Показывать кнопку вкладки</MaiyaLabeler_ShowMainTab>
+
+	<MaiyaLabeler_Status_Toggle>Maiya Labeler: {0}</MaiyaLabeler_Status_Toggle>
+	<MaiyaLabeler_Status_On>ВКЛ</MaiyaLabeler_Status_On>
+	<MaiyaLabeler_Status_Off>ВЫКЛ</MaiyaLabeler_Status_Off>
 </LanguageData>

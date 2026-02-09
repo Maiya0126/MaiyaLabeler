@@ -1,0 +1,11 @@
+﻿<?xml version="1.0" encoding="utf-8" ?>
+<Defs>
+	<MainButtonDef>
+		<defName>MaiyaLabeler_MainTab</defName>
+		<label>Labeler</label>
+		<description>Maiya Labeler Control Center.\n\nLeft-Click: Configure Tool\nRight-Click: Toggle Visibility</description>
+		<tabIconPath>UI/Icons/MaiyaIcon</tabIconPath>
+		<workerClass>MaiyaLabeler.MainButtonWorker_Labeler</workerClass>
+		<order>80</order>
+	</MainButtonDef>
+</Defs>

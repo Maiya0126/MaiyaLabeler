@@ -43,4 +43,10 @@
 
 	<MaiyaLabeler_ConfigCustomDesc>カスタム説明 (AI コンテキスト):</MaiyaLabeler_ConfigCustomDesc>
 	<MaiyaLabeler_DescPrefix>備考</MaiyaLabeler_DescPrefix>
+
+	<MaiyaLabeler_ShowMainTab>下部タブボタンを表示</MaiyaLabeler_ShowMainTab>
+
+	<MaiyaLabeler_Status_Toggle>Maiya Labeler: {0}</MaiyaLabeler_Status_Toggle>
+	<MaiyaLabeler_Status_On>オン</MaiyaLabeler_Status_On>
+	<MaiyaLabeler_Status_Off>オフ</MaiyaLabeler_Status_Off>
 </LanguageData>
