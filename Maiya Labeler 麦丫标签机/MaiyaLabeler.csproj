@@ -69,6 +69,7 @@
     </Reference>
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="Source\CompRoomAnchor.cs" />
     <Compile Include="Source\Dialog_LabelConfig.cs" />
     <Compile Include="Source\LabelRenderer.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />

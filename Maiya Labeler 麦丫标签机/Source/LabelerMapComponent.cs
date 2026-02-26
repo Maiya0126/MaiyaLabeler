@@ -18,12 +18,14 @@ namespace MaiyaLabeler
         public float opacity = 0.5f;
         public bool showIcon = true;
 
+        public LabelData() { }
+
         public void ExposeData()
         {
-            Scribe_Values.Look(ref customName, "customName");
+            Scribe_Values.Look(ref customName, "customName", "");
             Scribe_Values.Look(ref customDescription, "customDescription", "");
             Scribe_Values.Look(ref customColor, "customColor");
-            Scribe_Values.Look(ref offset, "offset");
+            Scribe_Values.Look(ref offset, "offset", Vector2.zero);
             Scribe_Values.Look(ref isHidden, "isHidden", false);
             Scribe_Values.Look(ref fontSize, "fontSize", 0);
             Scribe_Values.Look(ref opacity, "opacity", 0.5f);
@@ -43,8 +45,82 @@ namespace MaiyaLabeler
 
         public LabelData GetDataForZone(Verse.Zone zone) { if (zone == null) return null; if (zoneData.TryGetValue(zone.ID, out LabelData data)) return data; return null; }
         public LabelData GetOrCreateDataForZone(Verse.Zone zone) { if (zoneData.TryGetValue(zone.ID, out LabelData data)) return data; data = new LabelData(); zoneData[zone.ID] = data; return data; }
-        public LabelData GetDataForRoom(Room room) { if (room == null || room.PsychologicallyOutdoors) return null; IntVec3 key = room.Cells.First(); if (roomData.TryGetValue(key, out LabelData data)) return data; return null; }
-        public LabelData GetOrCreateDataForRoom(Room room) { if (room == null) return null; IntVec3 key = room.Cells.First(); if (roomData.TryGetValue(key, out LabelData data)) return data; data = new LabelData(); roomData[key] = data; return data; }
+
+        public LabelData GetDataForRoom(Room room)
+        {
+            if (room == null || room.PsychologicallyOutdoors || room.Map == null) return null;
+
+            // 1. 优先查本地字典缓存（最快）
+            IntVec3 key = room.Cells.First();
+            if (roomData.TryGetValue(key, out LabelData cachedData)) return cachedData;
+
+            // 2. 飞船落地恢复逻辑：只扫描纯内部地砖，绝对不碰墙和门
+            foreach (IntVec3 c in room.Cells)
+            {
+                List<Thing> things = c.GetThingList(room.Map);
+                for (int i = 0; i < things.Count; i++)
+                {
+                    Thing t = things[i];
+                    if (t is Building b && !(b is Building_Door))
+                    {
+                        var comp = b.GetComp<CompRoomAnchor>();
+                        if (comp != null && comp.savedData != null && (!string.IsNullOrEmpty(comp.savedData.customName) || !string.IsNullOrEmpty(comp.savedData.customDescription)))
+                        {
+                            // 发现有效数据！直接设为本房间的新本体
+                            LabelData recovered = comp.savedData;
+                            roomData[key] = recovered;
+
+                            // 立刻感染本房间的所有建筑，确保后续新建家具也能跟上
+                            SyncRoomBuildings(room, recovered);
+
+                            return recovered;
+                        }
+                    }
+                }
+            }
+            return null;
+        }
+
+        public LabelData GetOrCreateDataForRoom(Room room)
+        {
+            if (room == null || room.Map == null) return null;
+
+            LabelData existingData = GetDataForRoom(room);
+            IntVec3 key = room.Cells.First();
+
+            if (existingData != null)
+            {
+                SyncRoomBuildings(room, existingData);
+                return existingData;
+            }
+
+            LabelData newData = new LabelData();
+            roomData[key] = newData;
+
+            // 实时同步本体，你在窗口敲字，家具上立刻生效！
+            SyncRoomBuildings(room, newData);
+
+            return newData;
+        }
+
+        // 【核心工具】强行把数据塞给房间内部的所有家具
+        private void SyncRoomBuildings(Room room, LabelData data)
+        {
+            if (room == null || room.Map == null) return;
+            foreach (IntVec3 c in room.Cells)
+            {
+                List<Thing> things = c.GetThingList(room.Map);
+                for (int i = 0; i < things.Count; i++)
+                {
+                    Thing t = things[i];
+                    if (t is Building b && !(b is Building_Door))
+                    {
+                        var comp = b.GetComp<CompRoomAnchor>();
+                        if (comp != null) comp.savedData = data;
+                    }
+                }
+            }
+        }
 
         public override void ExposeData()
         {
@@ -55,38 +131,39 @@ namespace MaiyaLabeler
             if (roomData == null) roomData = new Dictionary<IntVec3, LabelData>();
         }
 
-        // 【核心修复】将按键检测放回 Update，完美解决“按一下触发两次”的问题
         public override void MapComponentUpdate()
         {
             if (Current.ProgramState != ProgramState.Playing) return;
             if (Find.CurrentMap != map) return;
 
-            // 1. 配置键 (=)
-            if (MaiyaLabelerDefOf.MaiyaLabeler_OpenConfig != null &&
-                MaiyaLabelerDefOf.MaiyaLabeler_OpenConfig.JustPressed)
+            // 【静默同步 & 防崩锁】每120帧(约2秒)自动备份一次
+            // 使用 .ToList() 创建副本进行遍历，防止字典被修改时造成崩溃
+            if (Find.TickManager.TicksGame % 120 == 0)
             {
-                OpenConfigWindowAt(UI.MouseCell());
+                var currentRooms = roomData.ToList();
+                foreach (var kvp in currentRooms)
+                {
+                    Room r = kvp.Key.GetRoom(this.map);
+                    if (r != null && !r.PsychologicallyOutdoors)
+                    {
+                        SyncRoomBuildings(r, kvp.Value);
+                    }
+                }
             }
 
-            // 2. 开关键 (-)
-            if (MaiyaLabelerDefOf.MaiyaLabeler_ToggleVisibility != null &&
-                MaiyaLabelerDefOf.MaiyaLabeler_ToggleVisibility.JustPressed)
-            {
+            if (MaiyaLabelerDefOf.MaiyaLabeler_OpenConfig != null && MaiyaLabelerDefOf.MaiyaLabeler_OpenConfig.JustPressed)
+                OpenConfigWindowAt(UI.MouseCell());
+
+            if (MaiyaLabelerDefOf.MaiyaLabeler_ToggleVisibility != null && MaiyaLabelerDefOf.MaiyaLabeler_ToggleVisibility.JustPressed)
                 MaiyaLabelerMod.ToggleVisibility();
-            }
         }
 
         public override void MapComponentOnGUI()
         {
             if (Current.ProgramState != ProgramState.Playing) return;
             if (Find.CurrentMap != map) return;
-
             if (loadTime < 0f) { loadTime = Time.realtimeSinceStartup; return; }
             if (Time.realtimeSinceStartup - loadTime < 3.0f) return;
-
-            // Update 里已经处理按键了，OnGUI 只负责画图
-
-            // --- 绘制逻辑 ---
             if (Find.Camera == null) return;
             if (Find.UIRoot != null && Find.UIRoot.screenshotMode.FiltersCurrentEvent) return;
             if (!MaiyaLabelerMod.Settings.showZoneLabels && !MaiyaLabelerMod.Settings.showRoomLabels) return;
@@ -94,7 +171,6 @@ namespace MaiyaLabeler
             try { DrawLabelsGUI(); } catch { }
         }
 
-        // ... OpenConfigWindowAt 保持不变 ...
         public static void OpenConfigWindowAt(IntVec3 c)
         {
             Map map = Find.CurrentMap;
@@ -110,7 +186,6 @@ namespace MaiyaLabeler
             else { Messages.Message("MaiyaLabeler_Msg_NoTarget".Translate(), MessageTypeDefOf.RejectInput, false); }
         }
 
-        // ... DrawLabelsGUI 和 DrawLabel 保持不变 (请务必保留之前的完整代码！) ...
         private void DrawLabelsGUI()
         {
             if (cachedBaseStyle == null) { cachedBaseStyle = new GUIStyle(GUI.skin.label); cachedBaseStyle.alignment = TextAnchor.MiddleCenter; cachedBaseStyle.fontStyle = FontStyle.Bold; }
@@ -150,19 +225,21 @@ namespace MaiyaLabeler
             int count = 0; float x = 0, z = 0;
             foreach (var c in cells) { x += c.x; z += c.z; count++; if (count > 60) break; }
             if (count == 0) return;
-            Vector3 worldPos = new Vector3(x / count + 0.5f, 0, z / count + 0.5f);
+            float worldZ = z / count + 0.5f - 0.4f;
+            Vector3 worldPos = new Vector3(x / count + 0.5f, 0, worldZ);
 
             if (data != null) worldPos += new Vector3(data.offset.x, 0, data.offset.y);
             if (isZone && (data == null || data.offset == Vector2.zero)) worldPos.z -= 0.3f;
 
             if (Find.Camera == null) return;
-            Vector3 screenPos = Find.Camera.WorldToScreenPoint(worldPos);
+            Vector3 screenPixelPos = Find.Camera.WorldToScreenPoint(worldPos);
 
-            screenPos.x /= Prefs.UIScale;
-            screenPos.y /= Prefs.UIScale;
-            screenPos.y = UI.screenHeight - screenPos.y;
+            if (screenPixelPos.z < 0) return;
 
-            if (screenPos.z < 0) return;
+            Vector2 screenPos = new Vector2(
+                screenPixelPos.x / Prefs.UIScale,
+                (float)UI.screenHeight - screenPixelPos.y / Prefs.UIScale
+            );
 
             Color labelColor = Color.white;
             Texture2D icon = null;

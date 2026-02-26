@@ -11,7 +11,6 @@ namespace MaiyaLabeler
     [StaticConstructorOnStartup]
     public static class MaiyaLabelerBootstrapper
     {
-        // 图标定义
         public static readonly Texture2D IconTool = ContentFinder<Texture2D>.Get("UI/Buttons/Rename", false);
 
         public static readonly Texture2D IconRoom =
@@ -31,7 +30,21 @@ namespace MaiyaLabeler
             var harmony = new Harmony("com.maiya.labeler");
             harmony.PatchAll(Assembly.GetExecutingAssembly());
 
-            // 注入工具
+            // 【致命崩盘修复】防死循环判定！
+            foreach (var def in DefDatabase<ThingDef>.AllDefs)
+            {
+                if (def.category == ThingCategory.Building)
+                {
+                    if (def.comps == null) def.comps = new List<CompProperties>();
+
+                    // 必须判定：只有在没有锚点的情况下才添加，防止共享列表被无限塞入导致内存溢出！
+                    if (!def.comps.Any(c => c is CompProperties_RoomAnchor))
+                    {
+                        def.comps.Add(new CompProperties_RoomAnchor());
+                    }
+                }
+            }
+
             DesignationCategoryDef zoneCategory = DefDatabase<DesignationCategoryDef>.GetNamed("Zone");
             if (zoneCategory != null)
             {
@@ -43,7 +56,6 @@ namespace MaiyaLabeler
                 }
             }
 
-            // 初始化按钮可见性
             if (MaiyaLabelerMod.Settings != null)
             {
                 MaiyaLabelerMod.ApplyMainButtonVisibility();
@@ -51,7 +63,6 @@ namespace MaiyaLabeler
         }
     }
 
-    // Designator 类
     public class Designator_LabelConfigTool : Designator
     {
         public Designator_LabelConfigTool()
@@ -74,7 +85,6 @@ namespace MaiyaLabeler
         public override void DesignateSingleCell(IntVec3 c) => LabelerMapComponent.OpenConfigWindowAt(c);
     }
 
-    // 区域 InspectString 补丁
     [HarmonyPatch(typeof(Verse.Zone), "GetInspectString")]
     public static class Patch_Zone_GetInspectString
     {
@@ -101,22 +111,14 @@ namespace MaiyaLabeler
         }
     }
 
-    // 【修改】右下角 PlaySettings 补丁
-    // 这里的逻辑也改为调用公共方法，保证同步
     [HarmonyPatch(typeof(PlaySettings), "DoPlaySettingsGlobalControls")]
     public static class Patch_PlaySettings
     {
         static void Postfix(WidgetRow row, bool worldView)
         {
             if (worldView) return;
-
-            // 使用当前的设置状态
             bool isActive = MaiyaLabelerMod.Settings.showRoomLabels;
-
-            // 绘制按钮，如果点击了，它会返回 true 并改变 isActive 的值
             row.ToggleableIcon(ref isActive, MaiyaLabelerBootstrapper.IconTool, "MaiyaLabeler_ToggleIconDesc".Translate(), SoundDefOf.Mouseover_ButtonToggle);
-
-            // 如果点击导致状态改变了，我们调用总闸
             if (isActive != MaiyaLabelerMod.Settings.showRoomLabels)
             {
                 MaiyaLabelerMod.ToggleVisibility();
@@ -124,7 +126,6 @@ namespace MaiyaLabeler
         }
     }
 
-    // Settings 类
     public class LabelerSettings : ModSettings
     {
         public bool showRoomLabels = true;
@@ -170,9 +171,6 @@ namespace MaiyaLabeler
             Settings = GetSettings<LabelerSettings>();
         }
 
-        // 【新增】核心总闸：切换显示状态
-        // 任何地方要切换，都必须调这个方法！
-        // 在 MaiyaLabelerMod 类中找到这个方法并修改：
         public static void ToggleVisibility()
         {
             bool newState = !Settings.showRoomLabels;
@@ -181,12 +179,9 @@ namespace MaiyaLabeler
 
             Settings.Write();
 
-            if (newState)
-                SoundDefOf.Checkbox_TurnedOn.PlayOneShotOnCamera(null);
-            else
-                SoundDefOf.Checkbox_TurnedOff.PlayOneShotOnCamera(null);
+            if (newState) SoundDefOf.Checkbox_TurnedOn.PlayOneShotOnCamera(null);
+            else SoundDefOf.Checkbox_TurnedOff.PlayOneShotOnCamera(null);
 
-            // 【核心修复】这里不再硬编码 "ON"/"OFF"，而是使用翻译 Key
             string statusKey = newState ? "MaiyaLabeler_Status_On" : "MaiyaLabeler_Status_Off";
             Messages.Message("MaiyaLabeler_Status_Toggle".Translate(statusKey.Translate()), MessageTypeDefOf.SilentInput, false);
         }
