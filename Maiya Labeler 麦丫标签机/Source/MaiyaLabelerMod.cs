@@ -30,14 +30,11 @@ namespace MaiyaLabeler
             var harmony = new Harmony("com.maiya.labeler");
             harmony.PatchAll(Assembly.GetExecutingAssembly());
 
-            // 【致命崩盘修复】防死循环判定！
             foreach (var def in DefDatabase<ThingDef>.AllDefs)
             {
                 if (def.category == ThingCategory.Building)
                 {
                     if (def.comps == null) def.comps = new List<CompProperties>();
-
-                    // 必须判定：只有在没有锚点的情况下才添加，防止共享列表被无限塞入导致内存溢出！
                     if (!def.comps.Any(c => c is CompProperties_RoomAnchor))
                     {
                         def.comps.Add(new CompProperties_RoomAnchor());
@@ -134,6 +131,9 @@ namespace MaiyaLabeler
         public bool showStorageZoneLabels = true;
         public bool showMainTab = true;
 
+        // 【新增】奥德赛跨地图支持开关，默认关闭以保证平时搬运家具的安全
+        public bool enableOdysseySupport = false;
+
         public float defaultFontSize = 1.0f;
         public bool showRoomIcon = true;
         public bool showGrowingIcon = true;
@@ -149,6 +149,9 @@ namespace MaiyaLabeler
             Scribe_Values.Look(ref showGrowingZoneLabels, "showGrowingZoneLabels", true);
             Scribe_Values.Look(ref showStorageZoneLabels, "showStorageZoneLabels", true);
             Scribe_Values.Look(ref showMainTab, "showMainTab", true);
+
+            // 存档读写新开关
+            Scribe_Values.Look(ref enableOdysseySupport, "enableOdysseySupport", false);
 
             Scribe_Values.Look(ref defaultFontSize, "defaultFontSize", 1.0f);
             Scribe_Values.Look(ref showRoomIcon, "showRoomIcon", true);
@@ -207,6 +210,11 @@ namespace MaiyaLabeler
             bool oldShowTab = Settings.showMainTab;
             list.CheckboxLabeled("MaiyaLabeler_ShowMainTab".Translate(), ref Settings.showMainTab);
             if (Settings.showMainTab != oldShowTab) ApplyMainButtonVisibility();
+
+            list.GapLine();
+
+            // 【新增】绘制跨地图支持的开关，并附带 tooltip 解释
+            list.CheckboxLabeled("MaiyaLabeler_EnableOdysseySupport".Translate(), ref Settings.enableOdysseySupport, "MaiyaLabeler_EnableOdysseySupport_Tooltip".Translate());
 
             list.GapLine();
 

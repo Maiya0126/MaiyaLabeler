@@ -50,34 +50,38 @@ namespace MaiyaLabeler
         {
             if (room == null || room.PsychologicallyOutdoors || room.Map == null) return null;
 
-            // 1. 优先查本地字典缓存（最快）
+            // 1. 优先查本地字典缓存（常规模式，最快且防搬运串改）
             IntVec3 key = room.Cells.First();
             if (roomData.TryGetValue(key, out LabelData cachedData)) return cachedData;
 
-            // 2. 飞船落地恢复逻辑：只扫描纯内部地砖，绝对不碰墙和门
-            foreach (IntVec3 c in room.Cells)
+            // 2. 只有在开启了奥德赛支持时，才去家具身上翻找物理锚点（飞船落地恢复逻辑）
+            if (MaiyaLabelerMod.Settings.enableOdysseySupport)
             {
-                List<Thing> things = c.GetThingList(room.Map);
-                for (int i = 0; i < things.Count; i++)
+                foreach (IntVec3 c in room.Cells)
                 {
-                    Thing t = things[i];
-                    if (t is Building b && !(b is Building_Door))
+                    List<Thing> things = c.GetThingList(room.Map);
+                    for (int i = 0; i < things.Count; i++)
                     {
-                        var comp = b.GetComp<CompRoomAnchor>();
-                        if (comp != null && comp.savedData != null && (!string.IsNullOrEmpty(comp.savedData.customName) || !string.IsNullOrEmpty(comp.savedData.customDescription)))
+                        Thing t = things[i];
+                        if (t is Building b && !(b is Building_Door))
                         {
-                            // 发现有效数据！直接设为本房间的新本体
-                            LabelData recovered = comp.savedData;
-                            roomData[key] = recovered;
+                            var comp = b.GetComp<CompRoomAnchor>();
+                            if (comp != null && comp.savedData != null && (!string.IsNullOrEmpty(comp.savedData.customName) || !string.IsNullOrEmpty(comp.savedData.customDescription)))
+                            {
+                                // 发现有效数据！直接设为本房间的新本体
+                                LabelData recovered = comp.savedData;
+                                roomData[key] = recovered;
 
-                            // 立刻感染本房间的所有建筑，确保后续新建家具也能跟上
-                            SyncRoomBuildings(room, recovered);
+                                // 立刻感染本房间的所有建筑，确保后续新建家具也能跟上
+                                SyncRoomBuildings(room, recovered);
 
-                            return recovered;
+                                return recovered;
+                            }
                         }
                     }
                 }
             }
+
             return null;
         }
 
@@ -90,15 +94,22 @@ namespace MaiyaLabeler
 
             if (existingData != null)
             {
-                SyncRoomBuildings(room, existingData);
+                // 如果开启了奥德赛支持，同步更新给房间里的所有内部家具
+                if (MaiyaLabelerMod.Settings.enableOdysseySupport)
+                {
+                    SyncRoomBuildings(room, existingData);
+                }
                 return existingData;
             }
 
             LabelData newData = new LabelData();
             roomData[key] = newData;
 
-            // 实时同步本体，你在窗口敲字，家具上立刻生效！
-            SyncRoomBuildings(room, newData);
+            // 新建时，如果开启了奥德赛支持，立刻刻在家具上
+            if (MaiyaLabelerMod.Settings.enableOdysseySupport)
+            {
+                SyncRoomBuildings(room, newData);
+            }
 
             return newData;
         }
@@ -136,9 +147,9 @@ namespace MaiyaLabeler
             if (Current.ProgramState != ProgramState.Playing) return;
             if (Find.CurrentMap != map) return;
 
-            // 【静默同步 & 防崩锁】每120帧(约2秒)自动备份一次
-            // 使用 .ToList() 创建副本进行遍历，防止字典被修改时造成崩溃
-            if (Find.TickManager.TicksGame % 120 == 0)
+            // 【静默同步管控】只有当玩家开启了支持，才执行每 2 秒一次的物理锚点同步
+            // 否则平时完全关闭，没有任何性能损耗，怎么搬家具都不会串台
+            if (MaiyaLabelerMod.Settings.enableOdysseySupport && Find.TickManager.TicksGame % 120 == 0)
             {
                 var currentRooms = roomData.ToList();
                 foreach (var kvp in currentRooms)

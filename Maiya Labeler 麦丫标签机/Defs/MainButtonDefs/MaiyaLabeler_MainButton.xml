@@ -4,7 +4,7 @@
 		<defName>MaiyaLabeler_MainTab</defName>
 		<label>Labeler</label>
 		<description>Maiya Labeler Control Center.\n\nLeft-Click: Configure Tool\nRight-Click: Toggle Visibility</description>
-		<tabIconPath>UI/Icons/MaiyaIcon</tabIconPath>
+		<iconPath>UI/Icons/MaiyaIcon</iconPath>
 		<workerClass>MaiyaLabeler.MainButtonWorker_Labeler</workerClass>
 		<order>80</order>
 	</MainButtonDef>

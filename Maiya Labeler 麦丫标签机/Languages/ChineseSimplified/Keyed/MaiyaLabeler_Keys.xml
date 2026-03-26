@@ -49,4 +49,7 @@
 	<MaiyaLabeler_Status_Toggle>麦丫标签机: {0}</MaiyaLabeler_Status_Toggle>
 	<MaiyaLabeler_Status_On>已开启</MaiyaLabeler_Status_On>
 	<MaiyaLabeler_Status_Off>已关闭</MaiyaLabeler_Status_Off>
+
+	<MaiyaLabeler_EnableOdysseySupport>启用飞船跨地图支持 (Odyssey/SOS2)</MaiyaLabeler_EnableOdysseySupport>
+	<MaiyaLabeler_EnableOdysseySupport_Tooltip>开启后，房间标签将绑定在家具上，随飞船转移地图时标签不会丢失。\n【注意】平时在基地内部建议关闭此项，否则将带有标签的家具搬运到其他房间时，可能会导致房间名字被意外覆盖！仅在准备起飞跨地图前开启即可。</MaiyaLabeler_EnableOdysseySupport_Tooltip>
 </LanguageData>
